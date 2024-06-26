@@ -127,6 +127,20 @@ export default async function decorate(block) {
     return Promise.reject();
   }
 
+  // Set Fetch Endpoint (Service)
+  product.setEndpoint(await getConfigValue('commerce-endpoint'));
+
+  // Set Fetch Headers (Service)
+  product.setFetchGraphQlHeaders({
+    'Content-Type': 'application/json',
+    'Magento-Environment-Id': await getConfigValue('commerce-environment-id'),
+    'Magento-Website-Code': await getConfigValue('commerce-website-code'),
+    'Magento-Store-View-Code': await getConfigValue('commerce-store-view-code'),
+    'Magento-Store-Code': await getConfigValue('commerce-store-code'),
+    'Magento-Customer-Group': await getConfigValue('commerce-customer-group'),
+    'x-api-key': await getConfigValue('commerce-x-api-key'),
+  });
+
   const langDefinitions = {
     default: {
       PDP: {
