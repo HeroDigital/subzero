@@ -5,7 +5,7 @@
             "id": "cif",
             "title": "Commerce",
             "environments": [
-                "stage"
+                "edit"
             ],
             "url": "https://main--subzero--herodigital.hlx.page/tools/picker/dist/index.html",
             "isPalette": true,
