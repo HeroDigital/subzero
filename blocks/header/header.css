@@ -24,10 +24,6 @@ header nav {
   font-family: var(--type-base-font-family);
 }
 
-header nav#nav a:hover {
-  color: var(--color-neutral-50);
-}
-
 header nav[aria-expanded='true'] {
   grid-template:
     'hamburger brand' var(--nav-height)
@@ -58,10 +54,6 @@ header nav[aria-expanded='true'] {
 header nav p {
   margin: 0;
   line-height: 1;
-}
-
-header nav a:any-link {
-  color: currentcolor;
 }
 
 /* hamburger */
@@ -151,6 +143,14 @@ header nav .nav-brand a {
   flex-basis: 128px;
   font: var(--type-headline-1-font);
   letter-spacing: var(--type-headline-1-letter-spacing);
+}
+
+header nav a:any-link {
+  color: currentcolor;
+}
+
+header nav#nav a:hover {
+  color: var(--color-neutral-50);
 }
 
 header nav .nav-brand img {

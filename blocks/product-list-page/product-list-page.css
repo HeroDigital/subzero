@@ -12,12 +12,13 @@ main .section.product-list-page-description {
     margin-bottom: 0;
     padding: 0;
 }
+
 .product-list-page-description p {
     font-family: museo-sans, sans-serif;
     font-weight: 100;
     font-size: 18px;
     line-height: 24px;
-    margin: 0 0 10px 0;
+    margin: 0 0 10px;
     padding: 0;
 }
 
@@ -47,6 +48,7 @@ main .section.product-list-page-container {
 .ds-widgets .font-body-1-default {
     font-family: museo-sans, sans-serif;
 }
+
 .ds-widgets .font-body-1-default {
     font-size: 15px;
     line-height: 18px;
@@ -57,8 +59,7 @@ main .section.product-list-page-container {
 }
 
 .ds-widgets .ds-sdk-product-list__grid.gap-x-2xl {
-    column-gap: 30px;
-    row-gap: 30px;
+    gap: 30px;
 }
 
 .ds-widgets .ds-sdk-product-item .flex-row {
@@ -92,7 +93,7 @@ main .section.product-list-page-container {
 .ds-widgets .ds-plp-facets__pills .ds-sdk-pill {
     border-radius: 0;
     margin-right: 30px;
-    background: rgb(227, 227, 226);
+    background: rgb(227 227 226);
     font-size: 15px;
     padding-top: 8px;
     padding-bottom: 8px;
@@ -114,7 +115,7 @@ main .section.product-list-page-container {
 .ds-widgets .ds-plp-facets__pills button span {
     font-size: 14px;
     text-decoration: underline;
-    color: rgb(0, 124, 191);
+    color: rgb(0 124 191);
 }
 
 .ds-widgets .ds-widgets-_actions {
@@ -137,6 +138,19 @@ main .section.product-list-page-container .ds-widgets .ds-widgets_results {
     padding-left: 15px;
 }
 
+
+main .section.product-list-page-container .ds-widgets .ds-sdk-sort-dropdown button {
+    margin-left: 5px;
+}
+
+main .section.product-list-page-container .ds-widgets .ds-sdk-per-page-picker button {
+    height: 40px;
+    font-family: museo-sans, sans-serif;
+    font-size: 14px;
+    border-radius: 0;
+    border: 1px solid #ddd;
+}
+
 main .section.product-list-page-container .ds-widgets .ds-widgets_results button.ring-black,
 main .section.product-list-page-container .ds-widgets .ds-widgets_results .ds-sdk-sort-dropdown button {
     height: 40px;
@@ -145,10 +159,6 @@ main .section.product-list-page-container .ds-widgets .ds-widgets_results .ds-sd
     border-radius: 0;
     border: 1px solid #ddd;
     margin-left: 10px;
-}
-
-main .section.product-list-page-container .ds-widgets .ds-sdk-sort-dropdown button {
-    margin-left: 5px;
 }
 
 main .section.product-list-page-container .ds-widgets .ds-sdk-sort-dropdown button span {
@@ -165,14 +175,6 @@ main .section.product-list-page-container .ds-widgets .ds-sdk-per-page-picker {
     background: none;
     border: 0;
     border-radius: 0;
-}
-
-main .section.product-list-page-container .ds-widgets .ds-sdk-per-page-picker button {
-    height: 40px;
-    font-family: museo-sans, sans-serif;
-    font-size: 14px;
-    border-radius: 0;
-    border: 1px solid #ddd;
 }
 
 main .section.product-list-page-container .ds-widgets .ds-plp-pagination .ds-plp-pagination__item {
