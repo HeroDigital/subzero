@@ -45,7 +45,6 @@ const getConfigForEnvironment = async (environment) => {
   return configJSON;
 };
 
-
 /**
  * This function retrieves a configuration value for a given environment.
  *
