@@ -35,20 +35,6 @@ function buildConfigURL(environment) {
   return configURL;
 }
 
-/* const getConfigForEnvironment = async (environment) => {
-  const env = environment || calcEnvironment();
-  let configJSON = window.sessionStorage.getItem(`config:${env}`);
-  if (!configJSON) {
-    configJSON = await fetch(buildConfigURL(env));
-    if (!configJSON.ok) {
-      throw new Error(`Failed to fetch config for ${env}`);
-    }
-    configJSON = await configJSON.text();
-    window.sessionStorage.setItem(`config:${env}`, configJSON);
-  }
-  return configJSON;
-}; */
-
 const getConfigForEnvironment = async (environment) => {
   const env = environment || calcEnvironment();
   const response = await fetch(buildConfigURL(env));
