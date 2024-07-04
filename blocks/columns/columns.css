@@ -1,3 +1,7 @@
+.columns {
+  margin-bottom: 50px;
+}
+
 .columns > div {
   display: flex;
   flex-direction: column;
@@ -11,7 +15,13 @@
   order: 1;
 }
 
+.brochure-section .columns > div > div {
+  display: flex;
+  align-items: center;
+}
+
 .columns > div > .columns-img-col {
+  flex: 1 0 40em;
   order: 0;
 }
 

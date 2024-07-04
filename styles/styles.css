@@ -379,7 +379,7 @@ main .section {
 /* section metadata */
 main .section.light,
 main .section.highlight {
-  background-color: var(--color-neutral-500);
+  background-color: #E3E3E2;
 }
 
 /* Base Design System Tokens */
