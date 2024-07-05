@@ -70,13 +70,13 @@ const pluginContext = {
  * @param {Element} main The container element
  */
 function buildHeroBlock(main) {
-  const picture = main.querySelector('picture');
-  // eslint-disable-next-line no-bitwise
-  if (picture) {
-    const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture] }));
-    main.prepend(section);
-  }
+  // const picture = main.querySelector('picture');
+  // // eslint-disable-next-line no-bitwise
+  // if (picture) {
+  //   const section = document.createElement('div');
+  //   section.append(buildBlock('hero', { elems: [picture] }));
+  //   main.prepend(section);
+  // }
 }
 
 /**

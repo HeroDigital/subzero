@@ -130,7 +130,7 @@ export default async function decorate(block) {
     });
   }
 
-  const navTools = nav.querySelector('.nav-sections');
+  const navTools = nav.querySelector('.nav-tools');
 
   // Minicart
   const minicartButton = document.createRange().createContextualFragment(`<div class="minicart-wrapper">

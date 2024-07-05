@@ -384,27 +384,38 @@ main .section.highlight {
   font-family: museo-sans,sans-serif;
   text-align: center;
   font-size: 16px;
-  padding: 40px 0 20px 0;
+  padding: 40px 0 20px;
+
   h1 {
     font-family: museo-sans,sans-serif;
     font-size: 54px;
   }
+
   h2 {
     font-family: museo-sans,sans-serif;
     font-size: 36px;
   }
+
   h3 {
     font-family: museo-sans,sans-serif;
     font-size: 26px;
   }
-  h1:after,
-  h2:after {
+
+  h1::after,
+  h2::after {
     display: block;
     content: '';
     width: 225px;
     height: 1px;
     background: #ddd;
     margin: 30px auto;
+  }
+}
+
+.logo-section {
+  img {
+    width: auto;
+    height: 30px;
   }
 }
 
