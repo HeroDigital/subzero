@@ -232,15 +232,13 @@ main pre {
 
 /* links */
 a:not(.dropin-design a) {
-  color: var(--color-brand-500);
+  color: #007CBF;
   font: var(--type-body-1-default-font);
-  letter-spacing: var(--type-body-1-default-letter-spacing);
-  text-decoration: none;
+  text-decoration: underline;
 }
 
 a:not(.dropin-design a):hover {
-  text-underline-offset: 6px;
-  color: var(--color-brand-700);
+  text-decoration: underline;
 }
 
 a:not(.dropin-design a):focus-visible {
@@ -360,12 +358,12 @@ main img {
 
 /* sections */
 main .section {
-  padding: var(--spacing-large) var(--spacing-small);
+  padding: 0 20px;
 }
 
 @media (width >=600px) {
   main .section {
-    padding: var(--spacing-large) var(--spacing-big);
+    padding: 0 20px;
   }
 }
 
@@ -380,6 +378,34 @@ main .section {
 main .section.light,
 main .section.highlight {
   background-color: #E3E3E2;
+}
+
+.section.content-center {
+  font-family: museo-sans,sans-serif;
+  text-align: center;
+  font-size: 16px;
+  padding: 40px 0 20px 0;
+  h1 {
+    font-family: museo-sans,sans-serif;
+    font-size: 54px;
+  }
+  h2 {
+    font-family: museo-sans,sans-serif;
+    font-size: 36px;
+  }
+  h3 {
+    font-family: museo-sans,sans-serif;
+    font-size: 26px;
+  }
+  h1:after,
+  h2:after {
+    display: block;
+    content: '';
+    width: 225px;
+    height: 1px;
+    background: #ddd;
+    margin: 30px auto;
+  }
 }
 
 /* Base Design System Tokens */

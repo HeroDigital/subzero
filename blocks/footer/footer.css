@@ -9,6 +9,10 @@ footer {
 footer .footer {
   max-width: 1200px;
   margin: auto;
+
+  a {
+    color: #000;
+  }
 }
 
 footer .footer-data {
