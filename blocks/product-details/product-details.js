@@ -127,20 +127,6 @@ export default async function decorate(block) {
     return Promise.reject();
   }
 
-  // Set Fetch Endpoint (Service)
-  product.setEndpoint(await getConfigValue('commerce-endpoint'));
-
-  // Set Fetch Headers (Service)
-  product.setFetchGraphQlHeaders({
-    'Content-Type': 'application/json',
-    'Magento-Environment-Id': await getConfigValue('commerce-environment-id'),
-    'Magento-Website-Code': await getConfigValue('commerce-website-code'),
-    'Magento-Store-View-Code': await getConfigValue('commerce-store-view-code'),
-    'Magento-Store-Code': await getConfigValue('commerce-store-code'),
-    'Magento-Customer-Group': await getConfigValue('commerce-customer-group'),
-    'x-api-key': await getConfigValue('commerce-x-api-key'),
-  });
-
   const langDefinitions = {
     default: {
       PDP: {
@@ -214,17 +200,6 @@ export default async function decorate(block) {
     setJsonLdProduct(product);
     setMetaTags(product);
     document.title = product.name;
-
-    window.adobeDataLayer.push((dl) => {
-      dl.push({
-        productContext: {
-          productId: parseInt(product.externalId, 10) || 0,
-          ...product,
-        },
-      });
-      // TODO: Remove eventInfo once collector is updated
-      dl.push({ event: 'product-page-view', eventInfo: { ...dl.getState() } });
-    });
   }, { eager: true });
 
   // Render Containers
@@ -274,6 +249,7 @@ export default async function decorate(block) {
               });
             },
           },
+          useACDL: true,
         })(block);
       } catch (e) {
         console.error(e);

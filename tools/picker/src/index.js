@@ -7,8 +7,8 @@ import getProductsInCategory from './queries/products.graphql.js';
 
 import './styles.css';
 
-const configFile = 'https://main--subzero--herodigital.hlx.page/configs.json';
-const defaultConfig = 'stage';
+const configFile = ' https://main--aem-boilerplate-commerce--hlxsites.hlx.live/configs.json';
+const defaultConfig = 'prod';
 
 /**
  * List of blocks to be available in the picker.

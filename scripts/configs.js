@@ -37,11 +37,15 @@ function buildConfigURL(environment) {
 
 const getConfigForEnvironment = async (environment) => {
   const env = environment || calcEnvironment();
-  const response = await fetch(buildConfigURL(env));
-  if (!response.ok) {
-    throw new Error(`Failed to fetch config for ${env}`);
+  let configJSON = window.sessionStorage.getItem(`config:${env}`);
+  if (!configJSON) {
+    configJSON = await fetch(buildConfigURL(env));
+    if (!configJSON.ok) {
+      throw new Error(`Failed to fetch config for ${env}`);
+    }
+    configJSON = await configJSON.text();
+    window.sessionStorage.setItem(`config:${env}`, configJSON);
   }
-  const configJSON = await response.text();
   return configJSON;
 };
 
