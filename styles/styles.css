@@ -419,10 +419,6 @@ main .section.highlight {
   }
 }
 
-.icon, .icon:before {
-  font-family: font-icons;
-}
-
 /* Base Design System Tokens */
 .dropin-design.dropin-design {
   --background-none: none 0 0% no-repeat padding-box;
