@@ -43,19 +43,16 @@ ${priceFieldsFragment}`;
 export const productDetailQuery = `query ProductQuery($sku: String!) {
   products(skus: [$sku]) {
     __typename
-    id
     externalId
     sku
     name
     description
     shortDescription
-    url
     urlKey
     inStock
     metaTitle
     metaKeyword
     metaDescription
-    addToCartAllowed
     images(roles: []) {
       url
       label
@@ -115,7 +112,7 @@ export async function performCatalogServiceQuery(query, variables) {
 
   const apiCall = new URL(await getConfigValue('commerce-endpoint'));
   apiCall.searchParams.append('query', query.replace(/(?:\r\n|\r|\n|\t|[\s]{4})/g, ' ')
-      .replace(/\s\s+/g, ' '));
+    .replace(/\s\s+/g, ' '));
   apiCall.searchParams.append('variables', variables ? JSON.stringify(variables) : null);
 
   const response = await fetch(apiCall, {
@@ -171,8 +168,8 @@ export async function performMonolithGraphQLQuery(query, variables, GET = true, 
     endpoint.searchParams.set('query', query.replace(/(?:\r\n|\r|\n|\t|[\s]{4})/g, ' ').replace(/\s\s+/g, ' '));
     endpoint.searchParams.set('variables', JSON.stringify(variables));
     response = await fetch(
-        endpoint.toString(),
-        { headers },
+      endpoint.toString(),
+      { headers },
     );
   }
 
@@ -202,16 +199,16 @@ export function renderPrice(product, format, html = (strings, ...values) => stri
 
     if (finalMin.amount.value !== finalMax.amount.value) {
       return html`
-        <div class="price-range">
-          ${finalMin.amount.value !== regularMin.amount.value ? html`<span class="price-regular">${format(regularMin.amount.value)}</span>` : ''}
-          <span class="price-from">${format(finalMin.amount.value)} - ${format(finalMax.amount.value)}</span>
-        </div>`;
+      <div class="price-range">
+        ${finalMin.amount.value !== regularMin.amount.value ? html`<span class="price-regular">${format(regularMin.amount.value)}</span>` : ''}
+        <span class="price-from">${format(finalMin.amount.value)} - ${format(finalMax.amount.value)}</span>
+      </div>`;
     }
 
     if (finalMin.amount.value !== regularMin.amount.value) {
       return html`<${Fragment}>
-        <span class="price-final">${format(finalMin.amount.value)} - ${format(regularMin.amount.value)}</span>
-      </${Fragment}>`;
+      <span class="price-final">${format(finalMin.amount.value)} - ${format(regularMin.amount.value)}</span> 
+    </${Fragment}>`;
     }
 
     return html`<span class="price-final">${format(finalMin.amount.value)}</span>`;
@@ -292,34 +289,4 @@ export function setJsonLd(data, name) {
   script.innerHTML = JSON.stringify(data);
   script.dataset.name = name;
   document.head.appendChild(script);
-}
-
-export async function loadErrorPage(code = 404) {
-  const htmlText = await fetch(`/${code}.html`).then((response) => {
-    if (response.ok) {
-      return response.text();
-    }
-    throw new Error(`Error getting ${code} page`);
-  });
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlText, 'text/html');
-  document.body.innerHTML = doc.body.innerHTML;
-  document.head.innerHTML = doc.head.innerHTML;
-
-  // When moving script tags via innerHTML, they are not executed. They need to be re-created.
-  const notImportMap = (c) => c.textContent && c.type !== 'importmap';
-  Array.from(document.head.querySelectorAll('script'))
-      .filter(notImportMap)
-      .forEach((c) => c.remove());
-  Array.from(doc.head.querySelectorAll('script'))
-      .filter(notImportMap)
-      .forEach((oldScript) => {
-        const newScript = document.createElement('script');
-        Array.from(oldScript.attributes).forEach(({ name, value }) => {
-          newScript.setAttribute(name, value);
-        });
-        const scriptText = document.createTextNode(oldScript.innerHTML);
-        newScript.appendChild(scriptText);
-        document.head.appendChild(newScript);
-      });
 }

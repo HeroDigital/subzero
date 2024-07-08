@@ -13,19 +13,33 @@ import {
   performCatalogServiceQuery,
   refineProductQuery,
   setJsonLd,
-  loadErrorPage,
 } from '../../scripts/commerce.js';
 import { readBlockConfig } from '../../scripts/aem.js';
 
 const html = htm.bind(h);
 
+export function errorGettingProduct(code = 404) {
+  fetch(`/${code}.html`).then((response) => {
+    if (response.ok) {
+      return response.text();
+    }
+    throw new Error(`Error getting ${code} page`);
+  }).then((htmlText) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlText, 'text/html');
+    document.body.innerHTML = doc.body.innerHTML;
+    document.head.innerHTML = doc.head.innerHTML;
+  });
+  document.body.innerHTML = '';
+}
+
 async function getVariantDetails(variantIds, sku) {
   const result = await performCatalogServiceQuery(
-      refineProductQuery,
-      {
-        sku: sku.toUpperCase(),
-        variantIds,
-      },
+    refineProductQuery,
+    {
+      sku: sku.toUpperCase(),
+      variantIds,
+    },
   );
   return {
     images: result.refineProduct?.images,
@@ -87,17 +101,15 @@ class ProductDetailPage extends Component {
       if (!product) {
         throw new Error("Couldn't get product");
       }
-
-      this.setState({
-        product,
-        loading: false,
-        selection: {},
-      });
     } catch (e) {
-      await loadErrorPage();
-    } finally {
-      this.props.resolve();
+      errorGettingProduct();
     }
+
+    this.setState({
+      product,
+      loading: false,
+      selection: {},
+    });
   }
 
   onAddToCart = async () => {
@@ -127,7 +139,7 @@ class ProductDetailPage extends Component {
 
     // fetch new images and prices
     const variantIds = Object.values({ ...this.state.selection, ...fragment })
-        .map((selection) => selection.id);
+      .map((selection) => selection.id);
     getVariantDetails(variantIds, this.state.product.sku).then(({ images, price }) => {
       this.setState((oldState) => ({
         product: {
@@ -166,12 +178,12 @@ class ProductDetailPage extends Component {
       <${Fragment} >
         <${Carousel} product=${this.state.product} sku=${this.props.sku} />
         <${Sidebar}
-            product=${this.state.product}
-            selection=${this.state.selection}
-            onSelectionChanged=${this.onSelectionChanged}
-            onAddToCart=${this.onAddToCart}
-            onAddToWishlist=${this.onAddToWishlist}
-            onQuantityChanged=${this.onQuantityChanged}
+          product=${this.state.product}
+          selection=${this.state.selection}
+          onSelectionChanged=${this.onSelectionChanged}
+          onAddToCart=${this.onAddToCart}
+          onAddToWishlist=${this.onAddToWishlist}
+          onQuantityChanged=${this.onQuantityChanged}
         />
         <div class="product-detail-description">
           <h3>Product Details</h3>
@@ -188,12 +200,10 @@ export default async function decorate($block) {
 
   const skuFromUrl = getSkuFromUrl() || blockConfig.sku;
   if (!skuFromUrl) {
-    await loadErrorPage();
-    return Promise.reject();
+    errorGettingProduct();
   }
 
-  return new Promise((resolve) => {
-    const app = html`<${ProductDetailPage} sku=${skuFromUrl} resolve=${resolve} />`;
-    render(app, $block);
-  });
+  const app = html`<${ProductDetailPage} sku=${skuFromUrl} />`;
+
+  render(app, $block);
 }

@@ -7,18 +7,27 @@ import { render as productRenderer } from '@dropins/storefront-pdp/render.js';
 import ProductDetails from '@dropins/storefront-pdp/containers/ProductDetails.js';
 
 // Libs
-import {
-  getProduct,
-  getSkuFromUrl,
-  setJsonLd,
-  loadErrorPage,
-} from '../../scripts/commerce.js';
+import { getProduct, getSkuFromUrl, setJsonLd } from '../../scripts/commerce.js';
 import { getConfigValue } from '../../scripts/configs.js';
 import { fetchPlaceholders } from '../../scripts/aem.js';
 
+// Error Handling (404)
+async function errorGettingProduct(code = 404) {
+  const htmlText = await fetch(`/${code}.html`).then((response) => {
+    if (response.ok) {
+      return response.text();
+    }
+    throw new Error(`Error getting ${code} page`);
+  });
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlText, 'text/html');
+  document.body.innerHTML = doc.body.innerHTML;
+  document.head.innerHTML = doc.head.innerHTML;
+}
+
 async function addToCart({
-                           sku, quantity, optionsUIDs, product,
-                         }) {
+  sku, quantity, optionsUIDs, product,
+}) {
   const { cartApi } = await import('../../../scripts/minicart/api.js');
 
   return cartApi.addToCart(sku, optionsUIDs, quantity, product);
@@ -83,7 +92,7 @@ function setMetaTags(product) {
   }
 
   const price = product.priceRange
-      ? product.priceRange.minimum.final.amount : product.price.final.amount;
+    ? product.priceRange.minimum.final.amount : product.price.final.amount;
 
   createMetaTag('title', product.metaTitle, 'name');
   createMetaTag('description', product.metaDescription, 'name');
@@ -114,9 +123,23 @@ export default async function decorate(block) {
     window.getProductPromise, fetchPlaceholders()]);
 
   if (!product) {
-    await loadErrorPage();
+    await errorGettingProduct();
     return Promise.reject();
   }
+
+  // Set Fetch Endpoint (Service)
+  product.setEndpoint(await getConfigValue('commerce-endpoint'));
+
+  // Set Fetch Headers (Service)
+  product.setFetchGraphQlHeaders({
+    'Content-Type': 'application/json',
+    'Magento-Environment-Id': await getConfigValue('commerce-environment-id'),
+    'Magento-Website-Code': await getConfigValue('commerce-website-code'),
+    'Magento-Store-View-Code': await getConfigValue('commerce-store-view-code'),
+    'Magento-Store-Code': await getConfigValue('commerce-store-code'),
+    'Magento-Customer-Group': await getConfigValue('commerce-customer-group'),
+    'x-api-key': await getConfigValue('commerce-x-api-key'),
+  });
 
   const langDefinitions = {
     default: {
@@ -191,6 +214,17 @@ export default async function decorate(block) {
     setJsonLdProduct(product);
     setMetaTags(product);
     document.title = product.name;
+
+    window.adobeDataLayer.push((dl) => {
+      dl.push({
+        productContext: {
+          productId: parseInt(product.externalId, 10) || 0,
+          ...product,
+        },
+      });
+      // TODO: Remove eventInfo once collector is updated
+      dl.push({ event: 'product-page-view', eventInfo: { ...dl.getState() } });
+    });
   }, { eager: true });
 
   // Render Containers
@@ -216,8 +250,8 @@ export default async function decorate(block) {
                 const adding = state.get('adding');
                 return {
                   text: adding
-                      ? next.dictionary.Custom.AddingToCart?.label
-                      : next.dictionary.PDP.Product.AddToCart?.label,
+                    ? next.dictionary.Custom.AddingToCart?.label
+                    : next.dictionary.PDP.Product.AddToCart?.label,
                   icon: 'Cart',
                   variant: 'primary',
                   disabled: adding || !next.data?.inStock || !next.valid,
@@ -240,11 +274,10 @@ export default async function decorate(block) {
               });
             },
           },
-          useACDL: true,
         })(block);
       } catch (e) {
         console.error(e);
-        await loadErrorPage();
+        await errorGettingProduct();
       } finally {
         resolve();
       }
