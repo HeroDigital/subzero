@@ -43,7 +43,7 @@ function focusNavSection() {
  * @param {Boolean} expanded Whether the element should be expanded or collapsed
  */
 function toggleAllNavSections(sections, expanded = false) {
-  sections.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
+  sections.querySelectorAll('.nav-categories .default-content-wrapper').forEach((section) => {
     section.setAttribute('aria-expanded', expanded);
   });
 }
@@ -87,6 +87,25 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   }
 }
 
+function setClassByLevel(rootElement) {
+  function traverseAndSetClass(element, level, col) {
+    if (element.tagName.toLowerCase() === 'li') {
+      element.classList.add('level-' + level);
+      element.classList.add('col-' + col);
+    }
+
+    const children = Array.from(element.children);
+    children.forEach((child, index) => {
+      if (child.tagName.toLowerCase() === 'ul' || child.tagName.toLowerCase() === 'li') {
+        traverseAndSetClass(child, child.tagName.toLowerCase() === 'ul' ? level + 1 : level, index);
+      }
+    });
+  }
+
+  // Start the recursion with the root element and level 1
+  traverseAndSetClass(rootElement, 1);
+}
+
 /**
  * loads and decorates the header, mainly the nav
  * @param {Element} block The header block element
@@ -103,13 +122,14 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const classes = ['brand', 'sections', 'tools'];
+  const classes = ['brand', 'sections', 'tools', 'categories'];
   classes.forEach((c, i) => {
     const section = nav.children[i];
     if (section) section.classList.add(`nav-${c}`);
   });
 
   const navBrand = nav.querySelector('.nav-brand');
+
   const brandLink = navBrand.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
@@ -117,14 +137,33 @@ export default async function decorate(block) {
   }
 
   const navSections = nav.querySelector('.nav-sections');
-  if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
-      if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
-      navSection.addEventListener('click', () => {
+
+  const navCategories = nav.querySelector('.nav-categories');
+  const navBreak = document.createElement('div');
+  navBreak.className = 'nav-break';
+  navCategories.insertAdjacentElement('beforebegin', navBreak);
+
+  if (navCategories) {
+    // navCategories.querySelectorAll(':scope .default-content-wrapper ul li').forEach((navCategory) => {
+    //   navCategory.className = 'level';
+    // });
+
+    setClassByLevel(navCategories.querySelector(':scope .default-content-wrapper > ul'));
+
+    navCategories.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navCategory) => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'wrapper';
+      const subMenu = navCategory.querySelector(':scope > ul');
+      if (subMenu) {
+        wrapper.appendChild(subMenu);
+        navCategory.append(wrapper);
+      }
+
+      navCategory.addEventListener('mouseenter', () => {
         if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+          const expanded = navCategory.getAttribute('aria-expanded') === 'true';
+          toggleAllNavSections(navCategories);
+          navCategory.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         }
       });
     });

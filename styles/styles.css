@@ -127,7 +127,7 @@
   /* Additional tokens */
   --type-fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
   --background-color: var(--color-neutral-50);
-  --nav-height: 6.4rem;
+  --nav-height: 86px;
 }
 
 @font-face {
@@ -417,6 +417,10 @@ main .section.highlight {
     width: auto;
     height: 30px;
   }
+}
+
+.icon, .icon:before {
+  font-family: font-icons;
 }
 
 /* Base Design System Tokens */
