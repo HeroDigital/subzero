@@ -1,4 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-icon-_rq">
-  <circle cx="11" cy="11" r="8"></circle>
-  <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" aria-label="Search" class="coveo-search-button-svg" viewBox="0 0 20 20"><g fill="#fff"><path d="M8.368 16.736C3.754 16.736 0 12.982 0 8.368S3.754 0 8.368 0s8.368 3.754 8.368 8.368-3.754 8.368-8.368 8.368m0-14.161c-3.195 0-5.793 2.599-5.793 5.793s2.599 5.793 5.793 5.793 5.793-2.599 5.793-5.793-2.599-5.793-5.793-5.793" class="coveo-magnifier-circle-svg"/><path d="M18.713 20c-.329 0-.659-.126-.91-.377l-4.552-4.551a1.286 1.286 0 1 1 1.82-1.82l4.552 4.551a1.286 1.286 0 0 1-.91 2.197"/></g></svg>

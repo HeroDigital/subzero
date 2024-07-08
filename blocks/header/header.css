@@ -336,49 +336,53 @@ header nav .nav-tools {
   gap: 10px;
 }
 
-header nav .nav-tools > button, header nav .nav-tools .minicart-wrapper > button {
+header nav .nav-section > button, header nav .nav-tools .minicart-wrapper > button {
   display: none;
   color: var(--color-brand-700);
   background: transparent;
   padding: 5px 10px;
 }
 
-header nav .nav-tools button.nav-cart-button {
+header nav .nav-section button.nav-cart-button {
   background-image: url('../../icons/cart.svg');
   background-repeat: no-repeat;
   background-position: left center;
   padding-left: 27px;
 }
 
-header nav .nav-tools button.nav-search-button {
+header .nav-search form {
+  display: flex;
+  align-items: center;
+}
+
+header .nav-search button.nav-search-button {
   font-size: 0;
+  width: 20px;
+  height: 16px;
   background-image: url('../../icons/search.svg');
+  background-color: transparent;
   background-repeat: no-repeat;
   background-position: center;
-  padding: 5px 15px;
+  padding: 5px 0;
+  margin: 0;
 }
 
-header .nav-search-input {
-  position: absolute;
-  z-index: 99;
-  top: var(--nav-height);
-  box-shadow: var(--shape-shadow-2);
-  background: var(--color-neutral-50);
-  left: 0;
-  right: 0;
-  padding: 20px;
+header .nav-search input {
+  width: 265px;
+  height: 30px;
+  padding: 0 6px;
+  background: transparent;
+  border: 1px solid #fff;
+  border-radius: 3px;
+  color: #fff;
+  margin-right: 5px;
+
+  &::placeholder {
+    color: #fff;
+  }
 }
 
-header .nav-search-input.hidden {
-  display: none;
-}
-
-header .nav-search-input input {
-  width: 100%;
-  padding: 5px;
-}
-
-header .nav-search-input .search_autocomplete .popover-container {
+header .nav-search .search_autocomplete .popover-container {
   width: 100%;
 }
 
@@ -388,12 +392,8 @@ header nav .nav-break {
 }
 
 @media (width >= 1024px) {
-  header .nav-search-input {
+  header .nav-search {
     left: unset;
     right: 20px;
-  }
-
-  header .nav-search-input input {
-    min-width: 400px;
   }
 }
