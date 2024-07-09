@@ -3,9 +3,183 @@
     min-height: 700px;
 }
 
+main .section.product-list-page-description {
+    font-family: museo-sans, sans-serif;
+    font-weight: 100;
+    font-size: 18px;
+    line-height: 24px;
+    text-align: center;
+    margin-bottom: 0;
+    padding: 0;
+}
+
+.product-list-page-description p {
+    font-family: museo-sans, sans-serif;
+    font-weight: 100;
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0 0 10px;
+    padding: 0;
+}
+
+.product-list-page-description .button-container {
+    display: inline-block;
+    margin: 0 2px;
+}
+
+.product-list-page-description h2 {
+    font-family: museo-sans, sans-serif;
+    display: inline-block;
+    padding-bottom: 25px;
+    margin-bottom: 39px;
+    border-bottom: 1px solid #ccc;
+}
+
 .product-list-page .ds-sdk-product-item__image img {
     aspect-ratio: 185 / 230;
     object-fit: contain;
+}
+
+main .section.product-list-page-container {
+    padding-top: 0;
+}
+
+.ds-widgets .font-headline-1,
+.ds-widgets .font-body-1-default {
+    font-family: museo-sans, sans-serif;
+}
+
+.ds-widgets .font-body-1-default {
+    font-size: 15px;
+    line-height: 18px;
+}
+
+.ds-widgets .ds-sdk-input__options .space-y-4>:not([hidden])~:not([hidden]) {
+    margin-top: 20px;
+}
+
+.ds-widgets .ds-sdk-product-list__grid.gap-x-2xl {
+    gap: 30px;
+}
+
+.ds-widgets .ds-sdk-product-item .flex-row {
+    justify-content: center;
+}
+
+.ds-widgets .ds-sdk-product-item {
+    border: thin solid #bcc3ca;
+    text-align: center;
+}
+
+.ds-widgets .ds-sdk-product-item:hover {
+    border: thin solid #bcc3ca;
+    box-shadow: none;
+}
+
+.ds-widgets .ds-sdk-product-price > p {
+    font-size: 14px;
+    color: #313a45;
+}
+
+.ds-widgets .ds-sdk-product-item__product-name.font-headline-2-strong {
+    font-size: 14px;
+}
+
+.ds-widgets .ds-plp-facets__pills {
+    align-items: center;
+    padding-left: 0.75rem;
+}
+
+.ds-widgets .ds-plp-facets__pills .ds-sdk-pill {
+    border-radius: 0;
+    margin-right: 30px;
+    background: rgb(227 227 226);
+    font-size: 15px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.ds-widgets .ds-plp-facets__pills .ds-sdk-pill .ds-sdk-pill__label {
+    font-size: 15px;
+}
+
+.ds-widgets .ds-plp-facets__pills .ds-sdk-pill:hover {
+    text-decoration: underline;
+}
+
+.ds-widgets .ds-plp-facets__pills button {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.ds-widgets .ds-plp-facets__pills button span {
+    font-size: 14px;
+    text-decoration: underline;
+    color: rgb(0 124 191);
+}
+
+.ds-widgets .ds-widgets-_actions {
+    padding-left: 0;
+    padding-right: 16px;
+}
+
+.ds-widgets .ds-widgets-_actions .ds-plp-facets__list .ds-sdk-input__label {
+    font-size: 20px;
+    font-weight: 100;
+}
+
+.ds-widgets .ds-widgets-_actions .ds-sdk-filter-button-desktop button {
+    text-transform: uppercase;
+    padding: 11px 30px;
+}
+
+main .section.product-list-page-container .ds-widgets .ds-widgets_results {
+    padding-top: 0;
+    padding-left: 15px;
+}
+
+
+main .section.product-list-page-container .ds-widgets .ds-sdk-sort-dropdown button {
+    margin-left: 5px;
+}
+
+main .section.product-list-page-container .ds-widgets .ds-sdk-per-page-picker button {
+    height: 40px;
+    font-family: museo-sans, sans-serif;
+    font-size: 14px;
+    border-radius: 0;
+    border: 1px solid #ddd;
+}
+
+main .section.product-list-page-container .ds-widgets .ds-widgets_results button.ring-black,
+main .section.product-list-page-container .ds-widgets .ds-widgets_results .ds-sdk-sort-dropdown button {
+    height: 40px;
+    font-family: museo-sans, sans-serif;
+    font-size: 14px;
+    border-radius: 0;
+    border: 1px solid #ddd;
+    margin-left: 10px;
+}
+
+main .section.product-list-page-container .ds-widgets .ds-sdk-sort-dropdown button span {
+    font-family: museo-sans, sans-serif;
+    font-size: 14px;
+}
+
+main .section.product-list-page-container .ds-widgets .ring-black button span {
+    font-family: museo-sans, sans-serif;
+    font-size: 14px;
+}
+
+main .section.product-list-page-container .ds-widgets .ds-sdk-per-page-picker {
+    background: none;
+    border: 0;
+    border-radius: 0;
+}
+
+main .section.product-list-page-container .ds-widgets .ds-plp-pagination .ds-plp-pagination__item {
+    font-family: museo-sans, sans-serif;
+    font-size: 15px;
 }
 
 @media (width >= 750px) {
