@@ -8,7 +8,7 @@ const isDesktop = window.matchMedia('(min-width: 900px)');
 function closeOnEscape(e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
-    const navSections = nav.querySelector('.nav-sections');
+    const navSections = nav.querySelector('.nav-categories');
     const navSectionExpanded = navSections.querySelector('[aria-expanded="true"]');
     if (navSectionExpanded && isDesktop.matches) {
       // eslint-disable-next-line no-use-before-define
@@ -137,7 +137,6 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
 
-
   const navCategories = nav.querySelector('.nav-categories');
   const navBreak = document.createElement('div');
   navBreak.className = 'nav-break';
@@ -161,6 +160,12 @@ export default async function decorate(block) {
           toggleAllNavSections(navCategories);
           navCategory.setAttribute('aria-expanded', expanded ? 'false' : 'true');
         }
+      });
+
+      navCategory.addEventListener('mouseleave', () => {
+        const expanded = navCategory.getAttribute('aria-expanded') === 'true';
+        toggleAllNavSections(navCategories);
+        navCategory.setAttribute('aria-expanded', expanded ? 'true' : 'false');
       });
     });
   }
@@ -201,7 +206,7 @@ export default async function decorate(block) {
       <span class="nav-hamburger-icon"></span>
     </button>`;
   hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-  nav.prepend(hamburger);
+  nav.append(hamburger);
   nav.setAttribute('aria-expanded', 'false');
   // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);
