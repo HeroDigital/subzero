@@ -191,25 +191,8 @@ header nav[aria-expanded='true'] .nav-sections {
   align-self: start;
 }
 
-header nav .nav-categories {
+header nav[aria-expanded='true'] .nav-categories {
   margin-left: auto;
-
-  ul > li::after {
-    content: '';
-    position: absolute;
-    right: 100%;
-    top: 50%;
-    display: inline-block;
-    width: 1px;
-    height: 18px;
-    background-color: #fff;
-    transform: translateY(-50%);
-    margin-right: 10px;
-  }
-
-  ul > li:first-child::after {
-    display: none;
-  }
 }
 
 header nav .nav-categories ul,
@@ -219,6 +202,10 @@ header nav .nav-sections ul {
   padding-left: 0;
   font: var(--type-body-1-default-font);
   letter-spacing: var(--type-body-1-default-letter-spacing);
+}
+
+header nav .nav-categories ul {
+  padding-top: 0;
 }
 
 header nav .nav-categories ul > li,
@@ -278,11 +265,34 @@ header nav .nav-sections ul > li > ul > li {
     transform: rotate(315deg);
   }
 
-  header nav .nav-categories ul,
-  header nav .nav-sections ul {
+  header nav .nav-sections ul,
+  header nav .nav-categories ul {
     display: flex;
     gap: 2em;
     margin: 0;
+  }
+
+  header nav .nav-categories ul {
+    li a {
+      position: relative;
+    }
+
+    li a::after {
+      content: '';
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      display: inline-block;
+      width: 1px;
+      height: 18px;
+      background-color: #fff;
+      transform: translateY(-50%);
+      margin-right: 10px;
+    }
+
+    li.col-0 a::after {
+      display: none;
+    }
   }
 
   header nav .nav-categories .default-content-wrapper > ul > .wrapper,
