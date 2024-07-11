@@ -7,6 +7,29 @@ import { getConsent } from './scripts.js';
 sampleRUM('cwv');
 
 // add more delayed functionality here
+function addProductItemActions() {
+  const items = document.querySelectorAll(".ds-sdk-product-item");
+  items.forEach((item) => {
+    const actions = document.createElement('div');
+    actions.classList.add('product-item-actions');
+
+    const compare = document.createRange().createContextualFragment(`
+      <div class="compare-block">
+        <input type="checkbox" name="compare">
+        <label><span class="compare-label">Compare</span></label>
+        <a href="#" class="compare-now-cta hidden">COMPARE NOW</a>
+    </div>
+    `);
+    const wishlist = document.createRange().createContextualFragment(`
+      <div class="wishlist-block">
+        <img src="icons/wishlist.png" width="20" height="20" alt="Add to Wishlist" />
+    </div>`);
+
+    actions.append(compare);
+    actions.append(wishlist);
+    item.prepend(actions);
+  });
+}
 
 // Load Commerce events SDK and collector
 if (getConsent('commerce-collection')) {
@@ -29,11 +52,12 @@ if (getConsent('commerce-collection')) {
   };
 
   window.adobeDataLayer.push(
-    { storefrontInstanceContext: config },
-    { eventForwardingContext: { commerce: true, aep: false } },
+      { storefrontInstanceContext: config },
+      { eventForwardingContext: { commerce: true, aep: false } },
   );
 
   // Load events SDK and collector
   import('./commerce-events-sdk.js');
   import('./commerce-events-collector.js');
+  addProductItemActions();
 }
