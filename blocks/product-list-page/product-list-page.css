@@ -24,6 +24,10 @@ main .section.product-list-page-description {
     line-height: 24px;
     margin: 0 0 10px;
     padding: 0;
+
+    a.button {
+        margin-bottom: 0;
+    }
 }
 
 .product-list-page-description .button-container {

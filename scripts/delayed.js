@@ -22,7 +22,7 @@ function addProductItemActions() {
     `);
     const wishlist = document.createRange().createContextualFragment(`
       <div class="wishlist-block">
-        <img src="icons/wishlist.png" width="20" height="20" alt="Add to Wishlist" />
+        <a href="#"><img src="icons/wishlist.png" width="20" height="20" alt="Add to Wishlist" /></a>
     </div>`);
 
     actions.append(compare);

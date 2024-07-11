@@ -264,7 +264,7 @@ button.button {
   box-sizing: border-box;
   text-decoration: none;
   border: var(--shape-border-width-1) solid var(--color-neutral-1000);
-  padding: 12px 30px;
+  padding: 14px 30px;
   text-align: center;
   cursor: pointer;
   color: var(--color-neutral-1000);
