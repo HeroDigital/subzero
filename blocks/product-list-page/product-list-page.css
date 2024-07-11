@@ -139,8 +139,12 @@ main .section.product-list-page-container {
 }
 
 .ds-sdk-product-price--no-discount,
-.ds-sdk-product-price{
-    display: none;
+.ds-sdk-product-price {
+
+    .text-brand-300,
+    .text-brand-600 {
+        font-size: 16px !important;
+    }
 }
 
 .ds-widgets .ds-plp-facets__pills {
