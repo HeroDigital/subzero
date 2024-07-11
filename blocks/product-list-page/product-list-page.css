@@ -132,6 +132,17 @@ main .section.product-list-page-container {
     align-items: center;
 }
 
+.ds-widgets .ds-sdk-product-item__product-sku.font-headline-2-strong {
+    font-size: 14px;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.ds-sdk-product-price--no-discount,
+.ds-sdk-product-price{
+    display: none;
+}
+
 .ds-widgets .ds-plp-facets__pills {
     align-items: center;
     padding-left: 0.75rem;
