@@ -67,11 +67,6 @@ main .section.product-list-page-container {
     margin-top: 20px;
 }
 
-.ds-widgets .ds-sdk-product-list__grid.gap-x-2xl {
-    grid-template-columns: repeat(3, 1fr) !important;
-    gap: 30px;
-}
-
 .ds-widgets .ds-sdk-product-item .flex-row {
     justify-content: center;
 }
@@ -282,8 +277,27 @@ main .section.product-list-page-container .ds-widgets .ds-plp-pagination .ds-plp
     font-size: 15px;
 }
 
+@media (width <= 750px) {
+    .ds-widgets .gap-x-2xl {
+        column-gap: 30px !important;
+    }
+
+    .ds-widgets .product-item-actions {
+        label {
+            font-size: 13px;
+        }
+    }
+}
+
 @media (width >= 750px) {
     .product-list-page {
         min-height: auto;
+    }
+}
+
+@media (width >= 900px) {
+    .ds-widgets .ds-sdk-product-list__grid.gap-x-2xl {
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 30px;
     }
 }
