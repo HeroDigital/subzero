@@ -16,7 +16,7 @@ export default async function decorate(block) {
     storeCode: await getConfigValue('commerce-store-code'),
     storeViewCode: await getConfigValue('commerce-store-view-code'),
     config: {
-      pageSize: 8,
+      pageSize: 6,
       perPageConfig: {
         pageSizeOptions: '12,24,36',
         defaultPageSizeOption: '12',

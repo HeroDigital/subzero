@@ -235,11 +235,11 @@ main pre {
 a:not(.dropin-design a) {
   color: #007CBF;
   font: var(--type-body-1-default-font);
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:not(.dropin-design a):hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:not(.dropin-design a):focus-visible {

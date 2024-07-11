@@ -40,8 +40,13 @@ main .section.product-list-page-description {
 }
 
 .product-list-page .ds-sdk-product-item__image img {
-    aspect-ratio: 185 / 230;
+    aspect-ratio: 185 / 200;
     object-fit: contain;
+}
+
+
+.product-list-page .ds-sdk-product-item__image .relative {
+    margin: 0 auto;
 }
 
 main .section.product-list-page-container {
@@ -63,6 +68,7 @@ main .section.product-list-page-container {
 }
 
 .ds-widgets .ds-sdk-product-list__grid.gap-x-2xl {
+    grid-template-columns: repeat(3, 1fr) !important;
     gap: 30px;
 }
 
@@ -70,7 +76,37 @@ main .section.product-list-page-container {
     justify-content: center;
 }
 
+.ds-widgets .product-item-actions {
+    display: flex;
+    padding: 10px;
+}
+
+.ds-widgets .product-item-actions .compare-block {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    text-transform: uppercase;
+
+    input {
+        width: 19px;
+        height: 19px;
+        border: 1px solid #ccc;
+        border-radius: 0;
+    }
+}
+
+.ds-widgets .product-item-actions .wishlist-block {
+    margin-left: auto;
+
+    img {
+        width: 26px;
+        height: 26px;
+    }
+}
+
 .ds-widgets .ds-sdk-product-item {
+    position: relative;
     border: thin solid #bcc3ca;
     text-align: center;
 }
@@ -80,6 +116,10 @@ main .section.product-list-page-container {
     box-shadow: none;
 }
 
+.ds-sdk-add-to-cart-button {
+    display: none;
+}
+
 .ds-widgets .ds-sdk-product-price > p {
     font-size: 14px;
     color: #313a45;
@@ -87,6 +127,10 @@ main .section.product-list-page-container {
 
 .ds-widgets .ds-sdk-product-item__product-name.font-headline-2-strong {
     font-size: 14px;
+    height: 130px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .ds-widgets .ds-plp-facets__pills {
@@ -108,7 +152,7 @@ main .section.product-list-page-container {
 }
 
 .ds-widgets .ds-plp-facets__pills .ds-sdk-pill:hover {
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 .ds-widgets .ds-plp-facets__pills button {
@@ -118,7 +162,7 @@ main .section.product-list-page-container {
 
 .ds-widgets .ds-plp-facets__pills button span {
     font-size: 14px;
-    text-decoration: underline;
+    text-decoration: none;
     color: rgb(0 124 191);
 }
 
