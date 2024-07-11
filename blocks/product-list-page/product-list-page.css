@@ -169,6 +169,58 @@ main .section.product-list-page-container {
 .ds-widgets .ds-widgets-_actions {
     padding-left: 0;
     padding-right: 16px;
+
+    .ds-widgets_actions_header,
+    .ds-sdk-filter-button-desktop {
+         display: none;
+    }
+
+    .flex.pb-4 {
+        display: none;
+    }
+
+    button {
+        font-size: 18px;
+        display: block;
+        width: 100%;
+        height: 46px;
+        border-radius: var(--shape-border-radius-3);
+    }
+}
+
+.ds-widgets .ds-widgets-_actions .ds-plp-facets__list {
+    .ds-sdk-input:nth-child(1) {
+        .ds-sdk-labelled-input {
+            input {
+                display: none;
+                visibility: hidden;
+            }
+
+            label {
+                font-size: 18px;
+                text-transform: uppercase;
+                vertical-align: center;
+                text-align: center;
+                line-height: 44px;
+                width: 100%;
+                border-radius: var(--shape-border-radius-3);
+                border: 1px solid #000;
+                margin-left: 0;
+                height: 46px;
+                color: #000;
+
+                span {
+                    display: none;
+                    font-size: 18px;
+                }
+
+                &:hover {
+                    background: #000;
+                    color: #fff;
+                }
+            }
+        }
+    }
 }
 
 .ds-widgets .ds-widgets-_actions .ds-plp-facets__list .ds-sdk-input__label {
