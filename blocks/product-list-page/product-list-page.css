@@ -135,12 +135,13 @@ main .section.product-list-page-container {
 .ds-widgets .ds-sdk-product-item__product-sku.font-headline-2-strong {
     font-size: 14px;
     font-weight: 300;
+    color: rgb(49 58 69 / 75%);
     text-transform: uppercase;
+    margin-bottom: 10px;
 }
 
 .ds-sdk-product-price--no-discount,
 .ds-sdk-product-price {
-
     .text-brand-300,
     .text-brand-600 {
         font-size: 16px !important;
